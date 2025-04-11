@@ -9,12 +9,10 @@
 usuario_correto = 'keverson'
 senha_correta   = '17081992'
 
-usuario = input('Login: ')
-senha   = input('Senha: ')
+usuario = input('Login: ') == usuario_correto
+senha   = input('Senha: ') == senha_correta
 
-if usuario == usuario_correto and senha == senha_correta:
+if usuario and senha:
     print(f'Bem vindo, {usuario_correto}!')
 else:
     print('Usuário ou senha informados incorreto!');
-    
-    
