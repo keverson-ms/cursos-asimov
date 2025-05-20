@@ -12,4 +12,12 @@ l1.clear()
 for n in range(5):
     print(l2.append(n * 3))
 
-valores =
+vogais = ['a', 'i', 'o', 'u']
+vogais.insert(1, 'e')
+vogais.insert(5, 'k')
+vogais.pop()
+
+valores = [12, 56, 1, 0, 456, 46]
+print(valores.sort())
+
+valores.extend([5, 10 ,20])
