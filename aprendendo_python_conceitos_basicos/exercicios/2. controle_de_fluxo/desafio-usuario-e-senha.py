@@ -15,4 +15,4 @@ senha   = input('Senha: ') == senha_correta
 if usuario and senha:
     print(f'Bem vindo, {usuario_correto}!')
 else:
-    print('Usuário ou senha informados incorreto!');
+    print('Usuário ou senha informados incorreto!')
