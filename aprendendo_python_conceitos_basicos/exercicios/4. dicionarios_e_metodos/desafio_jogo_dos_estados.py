@@ -48,7 +48,7 @@ while i <= len(itens):
     if opcao in ['s', 'n']:
         i += 1
         resposta = input(f'Qual a capital do Estado {estado.upper()}: ').lower()
-        print(f'Você acertou: {capital}' if resposta == capital.lower() else f'você errou a resposta correta seria: {capital}')
+        print(f'Você acertou: {capital}' if resposta == capital.lower() else f'você errou a opção correta seria: {capital}')
 
     if resposta == capital.lower():
         acertos +=1
