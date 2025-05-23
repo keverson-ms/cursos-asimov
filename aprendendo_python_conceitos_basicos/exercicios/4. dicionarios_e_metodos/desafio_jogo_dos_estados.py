@@ -1,68 +1,70 @@
 # Crie um "jogo dos estados". Neste jogo, o jogador precisa responder o nome da capital
-# de cada Estado do Brasil. O jogo deve perguntar ao usuário "Qual a capital do Extado X?",
+# de cada Estado do Brasil. O jogo deve perguntar ao usuário "Qual a capital do Estado X?",
 # e checar se o usuário respondeu de forma correta. Após cada pergunta, o usuário pode
 # escolher parar o jogo ou continuar para a próxima pergunta. Quando o usuário decidir parar
 # ou quando todas as perguntas forem respondidas, o código mostra o número bruto e porcentagem de acertos.
 
 estados_capitais = {
-	'Acre': 'Rio Branco',
-	'Alagoas': 'Maceió',
-	'Amapá': 'Macapá',
-	'Amazonas': 'Manaus',
-    'Bahia': 'Salvador',
-    'Ceará': 'Fortaleza',
-    'Distrito Federal': 'Brasília',
-    'Espírito Santo': 'Vitória',
-    'Goiás': 'Goiânia',
-    'Maranhão': 'São Luís',
-    'Mato Grosso': 'Cuiabá',
-    'Mato Grosso do Sul': 'Campo Grande',
-    'Minas Gerais': 'Belo Horizonte',
-    'Pará': 'Belém',
-    'Paraíba': 'João Pessoa',
-    'Paraná': 'Curitiba',
-    'Pernambuco': 'Recife',
-    'Piauí': 'Teresina',
-    'Rio de Janeiro': 'Rio de Janeiro',
-    'Rio Grande do Norte': 'Natal',
-    'Rio Grande do Sul': 'Porto Alegre',
-    'Rondônia': 'Porto Velho',
-    'Roraima': 'Boa Vista',
-    'Santa Catarina': 'Florianópolis',
-    'São Paulo': 'São Paulo',
-    'Sergipe': 'Aracaju',
-    'Tocantins': 'Palmas'
+	'Acre'                  : 'Rio Branco',
+	'Alagoas'               : 'Maceió',
+	'Amapá'                 : 'Macapá',
+	'Amazonas'              : 'Manaus',
+    'Bahia'                 : 'Salvador',
+    'Ceará'                 : 'Fortaleza',
+    'Distrito Federal'      : 'Brasília',
+    'Espírito Santo'        : 'Vitória',
+    'Goiás'                 : 'Goiânia',
+    'Maranhão'              : 'São Luís',
+    'Mato Grosso'           : 'Cuiabá',
+    'Mato Grosso do Sul'    : 'Campo Grande',
+    'Minas Gerais'          : 'Belo Horizonte',
+    'Pará'                  : 'Belém',
+    'Paraíba'               : 'João Pessoa',
+    'Paraná'                : 'Curitiba',
+    'Pernambuco'            : 'Recife',
+    'Piauí'                 : 'Teresina',
+    'Rio de Janeiro'        : 'Rio de Janeiro',
+    'Rio Grande do Norte'   : 'Natal',
+    'Rio Grande do Sul'     : 'Porto Alegre',
+    'Rondônia'              : 'Porto Velho',
+    'Roraima'               : 'Boa Vista',
+    'Santa Catarina'        : 'Florianópolis',
+    'São Paulo'             : 'São Paulo',
+    'Sergipe'               : 'Aracaju',
+    'Tocantins'             : 'Palmas'
 }
 
 itens = list(estados_capitais.items())
 acertos = 0
 i = 0
+calc = 0
+tot = 0
+opcao = 'n'
+resposta = ''
 
-while i < len(itens):
+while i <= len(itens):
     estado, capital = itens[i]
-    i+=1
 
-    resposta = input(f'Qual a capital do Estado {estado.upper()}: ')
-    acertos = acertos + 1 if resposta.lower() == capital.lower() else acertos
+    if opcao in ['s', 'n']:
+        i += 1
+        resposta = input(f'Qual a capital do Estado {estado.upper()}: ').lower()
+        print(f'Você acertou: {capital}' if resposta == capital.lower() else f'você errou a resposta correta seria: {capital}')
 
-    continuar = input(f'Deseja seguir para a próxima pergunta: [s] para sim [n] para não: ')
+    if resposta == capital.lower():
+        acertos +=1
 
-    continuar = True if continuar.lower() == 's' else False
-    print(i == len(itens), i, len(itens))
-    if continuar == False:
-        print(f'Você acertou {acertos} pergunta de {i} respondidas de um total de {len(itens)} perguntas.')
-        print(i / acertos)
+    opcao = input(f'Deseja continuar: [s] sim [n] não: ').lower()
+
+    if opcao not in ['s', 'n']:
+        print(f'Opção {opcao} inválida.')
+        opcao
+
+    calc = round(acertos / i * 100, 2)
+    tot = round(acertos / len(itens) * 100, 2)
+
+    if opcao == 'n' or len(itens) == i:
+        print(f'Você respondeu {i} pergunta(s): ')
+        print(f'Sua taxa de acerto das perguntas respondidas é: {calc}% de {i} respondidas.')
+        print(f'Sua taxa de acerto em relação ao total de perguntas é {len(itens)}/{acertos}, margem de acerto des: {tot}%')
         break
-    elif(i == len(itens)) :
-        print(f'Você respondeu todas as {len(itens)} perguntas: ')
-        print(f'Acertos/Erros {acertos}/{len(itens) - acertos}')
-
-#for estado, cidade in estados_capitais.items():
-#    resposta = input(f'Qual a capital do estado {estado.upper()}?')
-#    print(f'{resposta}')
-#    if(resposta == cidade):
-#        print(f'{estado} -> {cidade}')
-#    elif (resposta != cidade):
-#        print('Você errou!')
-#        input(f'Deseja prosseguir com o Jogo?')
 
